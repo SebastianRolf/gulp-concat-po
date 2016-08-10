@@ -1,6 +1,9 @@
-# gulp-concat-po [![NPM version](https://badge.fury.io/js/gulp-concat-po.png)](https://www.npmjs.org/package/gulp-concat-po)
+# gulp-concat-po-modules
 
-> Correctly concatenates .po files.
+> Correctly concatenates .po files from several bower modules. Outputs one file per language found in all streamed files.
+> Languages are read from the PO headers, not the filenames.
+
+Based on [gulp-concat-po](https://github.com/JustBlackBird/gulp-concat-po) by Dmitriy Simushev
 
 
 ## Install
@@ -8,33 +11,47 @@
 1. Install the plugin with the following command:
 
 	```shell
-	npm install gulp-concat-po --save-dev
+	npm install gulp-concat-po-modules --save-dev
 	```
 
 
 ## Usage
 
+Simply concatenate files to the output directory:
 ```js
 var gulp = require('gulp');
-var concatPo = require('gulp-concat-po');
+var concatPoModules = require('gulp-concat-po-modules');
 
-gulp.task('default', function () {
-    return gulp.src(['src/gettext/*.po'])
-        .pipe(concatPo('messages.pot'))
-        .pipe(gulp.dest('release'));
+gulp.task('translations', function () {
+  return gulp.src(['app/bower_components/**/*.po', 'app/po/**/*.po'])
+    .pipe(concatPoModules())
+    .pipe(gulp.dest('app/i18n/'));
+});
+```
+
+
+Pipe the result directly to other tools, e.g. gulp-angular-gettext:
+```js
+var gulp = require('gulp');
+var concatPoModules = require('gulp-concat-po-modules');
+var gettext = require('gulp-angular-gettext');
+
+gulp.task('translations', function () {
+  return gulp.src(['app/bower_components/**/*.po', 'app/po/**/*.po'])
+    .pipe(concatPoModules())
+    .pipe(gettext.compile({
+      // options to pass to angular-gettext-tools...
+      format: 'javascript',
+      module: packageInfo.name
+    }))
+    .pipe(gulp.dest('app/i18n/'));
 });
 ```
 
 
 ## API
 
-### concatPo(fileName, options)
-
-#### fileName
-
-Type: `String`
-
-Name of the resulting file.
+### concatPo(options)
 
 #### options.headers
 
@@ -59,4 +76,4 @@ If a field is not specified the value from the first file in the stream will be 
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © Dmitriy Simushev
+[MIT](http://opensource.org/licenses/MIT) © Sebastian Rolf

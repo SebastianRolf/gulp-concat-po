@@ -1,18 +1,18 @@
 {
-  "name": "gulp-concat-po",
-  "version": "0.1.1",
-  "description": "Gulp plugin for .po files concatenation",
+  "name": "gulp-concat-po-modules",
+  "version": "0.1.0",
+  "description": "Gulp plugin for .po files concatenation, outputs one file for each language from the input stream",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/JustBlackBird/gulp-concat-po.git"
+    "url": "https://github.com/SebastianRolf/gulp-concat-po-modules.git"
   },
   "bugs": {
-    "url": "https://github.com/JustBlackBird/gulp-concat-po/issues"
+    "url": "https://github.com/SebastianRolf/gulp-concat-po-modules/issues"
   },
   "author": {
-    "name": "Dmitriy Simushev",
-    "email": "simushevds@gmail.com"
+    "name": "Sebastian Rolf",
+    "email": "sebastian.rolf@dekra.com"
   },
   "main": "index.js",
   "keywords": [

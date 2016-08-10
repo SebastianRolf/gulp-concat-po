@@ -1,0 +1,12 @@
+# temp files
+/build/
+.DS_Store
+.tmp
+.sass-cache
+
+# IDE
+*.sublime-project
+*.sublime-workspace
+atlassian-ide-plugin.xml
+.idea/
+.vscode/
