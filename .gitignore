@@ -10,3 +10,6 @@
 atlassian-ide-plugin.xml
 .idea/
 .vscode/
+
+node_modules/
+npm-debug.log
